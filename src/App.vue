@@ -10,7 +10,7 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :dataList="data"/>
+    <Container :dataList="data" :step="step" />
     <button @click="more">더보기</button>
 
     <div class="footer">
@@ -19,6 +19,7 @@
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
+ 
   </div>
 </template>
 
@@ -35,6 +36,7 @@ export default {
   },
   data(){
     return{
+      step : 0,
       data : datas,
       val : 0,
     }
