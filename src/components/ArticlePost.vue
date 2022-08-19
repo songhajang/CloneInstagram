@@ -2,14 +2,14 @@
   <div>
     <div class="post">
       <div class="post-header">
-        <div class="profile"></div>
-        <span class="profile-name">ChanKim</span>
+        <div class="profile" :style="{ backgroundImage: `url(${data.userImage})` }"></div>
+        <span class="profile-name">{{ data.name }}</span>
       </div>
-      <div class="post-body"></div>
+      <div class="post-body" :style="{ backgroundImage: `url(${data.postImage})` }"></div>
       <div class="post-content">
-        <p>43 Likes</p>
-        <p><strong>글쓴이아이디</strong> 임시내용</p>
-        <p class="date">May 15</p>
+        <p>{{ data.likes }} Likes</p>
+        <p><strong>{{ data.name }}</strong>{{ data.content }}</p>
+        <p class="date">{{ data.date }}</p>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
 }
 
 .profile {
-  background-image: url("https://placeimg.com/100/100/arch");
+  /* background-image: url("https://placeimg.com/100/100/arch"); */
   width: 30px;
   height: 30px;
   background-size: 100%;
@@ -51,7 +51,7 @@ export default {
 }
 
 .post-body {
-  background-image: url("https://placeimg.com/640/480/animals");
+  /* background-image: url("https://placeimg.com/640/480/animals"); */
   height: 450px;
   background-position: center;
   background-size: cover;
