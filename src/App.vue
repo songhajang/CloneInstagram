@@ -10,12 +10,12 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :dataList="data" :step="step" />
+    <Container :dataList="data" :step="step" :fileImg="imgs"/>
     <button @click="more">더보기</button>
 
     <div class="footer">
       <ul class="footer-button-plus">
-        <input type="file" id="file" class="inputfile" />
+        <input @change="upload" accept="image/*" type="file" id="file" class="inputfile" />
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
@@ -39,6 +39,7 @@ export default {
       step : 0,
       data : datas,
       val : 0,
+      imgs : '',
     }
   },
   methods:{
@@ -48,7 +49,15 @@ export default {
         this.data.push(res.data)
         this.val  = 1
       })
-    }
+    },
+    upload(e){
+      let file = e.target.files
+      this.step = 1
+      let url = URL.createObjectURL(file[0])
+      this.imgs = url
+      console.log( this.imgs)
+      
+    },
   }
 }
 </script>
