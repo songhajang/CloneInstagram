@@ -19,9 +19,9 @@
 
         <!-- 글작성페이지 -->
         <div v-if="step == 2">
-            <div class="upload-image"></div>
+            <div class="upload-image" :style="`background-image : url(${fileImg})`"></div>
             <div class="write">
-                <textarea class="write-box">write!</textarea>
+                <textarea class="write-box" placeholder="write!" @input="$emit('write', $event.target.value)" ></textarea>
             </div>
         </div>
 

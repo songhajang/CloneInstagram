@@ -5,12 +5,13 @@
         <li>Cancel</li>
       </ul>
       <ul class="header-button-right">
-        <li>Next</li>
+        <li @click="step++" v-if="step==1">Next</li>
+        <li @click="publish" v-if="step==2">발행</li>
       </ul>
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :dataList="data" :step="step" :fileImg="imgs"/>
+    <Container :dataList="data" :step="step" :fileImg="imgs" @write="comment = $event"/>
     <button @click="more">더보기</button>
 
     <div class="footer">
@@ -40,6 +41,7 @@ export default {
       data : datas,
       val : 0,
       imgs : '',
+      comment : '',
     }
   },
   methods:{
@@ -52,12 +54,26 @@ export default {
     },
     upload(e){
       let file = e.target.files
-      this.step = 1
+      this.step ++
       let url = URL.createObjectURL(file[0])
       this.imgs = url
       console.log( this.imgs)
       
     },
+    publish(){
+      let bord = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imgs,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.comment,
+        filter: "perpetua"
+      }
+      this.data.unshift(bord)
+      this.step = 0
+    }
   }
 }
 </script>
