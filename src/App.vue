@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <ul class="header-button-left">
-        <li @click="syep=0">Cancel</li>
+        <li @click="step=0">Cancel</li>
       </ul>
       <ul class="header-button-right">
         <li @click="step++" v-if="step==1">Next</li>
@@ -11,7 +11,7 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :dataList="data" :step="step" :fileImg="imgs" @write="comment = $event"/>
+    <Container :dataList="data" :step="step" :fileImg="imgs" :filterName="imgFilter" @write="comment = $event"/>
     <button @click="more" v-if="step == 0">더보기</button>
 
     <div class="footer">
@@ -42,7 +42,13 @@ export default {
       val : 0,
       imgs : '',
       comment : '',
+      imgFilter : '',
     }
+  },
+  mounted(){
+    this.emitter.on('filterName', (e)=>{
+      this.imgFilter = e
+    });
   },
   methods:{
     more(){
@@ -69,10 +75,11 @@ export default {
         date: "May 15",
         liked: false,
         content: this.comment,
-        filter: "perpetua"
+        filter: this.imgFilter
       }
       this.data.unshift(bord)
       this.step = 0
+      this.imgFilter = ''
     }
   }
 }

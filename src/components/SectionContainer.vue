@@ -7,7 +7,7 @@
 
         <!-- 필터선택페이지 -->
         <div v-if="step == 1">
-            <div class="upload-image" :style="`background-image : url(${fileImg})`"></div>
+            <div :class="filterName" class="upload-image" :style="`background-image : url(${fileImg})`"></div>
             <div class="filters">
                 <FilterBox v-for="lst in fillter" :key="lst" :filterImg="fileImg" :filter="lst" >
                     {{lst}}
@@ -17,7 +17,7 @@
 
         <!-- 글작성페이지 -->
         <div v-if="step == 2">
-            <div class="upload-image" :style="`background-image : url(${fileImg})`"></div>
+            <div :class="filterName" class="upload-image" :style="`background-image : url(${fileImg})`"></div>
             <div class="write">
                 <textarea class="write-box" placeholder="write!" @input="$emit('write', $event.target.value)" ></textarea>
             </div>
@@ -45,6 +45,7 @@ export default {
         dataList: Array,
         step: Number,
         fileImg: String,
+        filterName : String,
     }
 }
 </script>
