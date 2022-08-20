@@ -9,11 +9,7 @@
         <div v-if="step == 1">
             <div class="upload-image" :style="`background-image : url(${fileImg})`"></div>
             <div class="filters">
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
+                <FilterBox v-for="(lst,key) in fillter" :key="key" :filterImg="fileImg" :class="lst"></FilterBox>
             </div>
         </div>
 
@@ -30,9 +26,18 @@
 
 <script>
 import Post from './ArticlePost.vue'
+import FilterBox from './ArticleFilterBox.vue'
 export default {
+    data(){
+        return{
+            fillter : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+                        "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+                        "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+        }
+    },
     components: {
         Post,
+        FilterBox,
     },
     props: {
         dataList: Array,
@@ -46,8 +51,8 @@ export default {
 .upload-image {
     width: 100%;
     height: 450px;
-    background: cornflowerblue;
     background-size: cover;
+    background-position: center;
 }
 
 .filters {
