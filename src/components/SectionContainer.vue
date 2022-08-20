@@ -9,7 +9,9 @@
         <div v-if="step == 1">
             <div class="upload-image" :style="`background-image : url(${fileImg})`"></div>
             <div class="filters">
-                <FilterBox v-for="(lst,key) in fillter" :key="key" :filterImg="fileImg" :class="lst"></FilterBox>
+                <FilterBox v-for="lst in fillter" :key="lst" :filterImg="fileImg" :filter="lst" >
+                    {{lst}}
+                </FilterBox>
             </div>
         </div>
 
@@ -58,17 +60,6 @@ export default {
 .filters {
     overflow-x: scroll;
     white-space: nowrap;
-}
-
-.filter-1 {
-    width: 100px;
-    height: 100px;
-    background-color: cornflowerblue;
-    margin: 10px 10px 10px auto;
-    padding: 8px;
-    display: inline-block;
-    color: white;
-    background-size: cover;
 }
 
 .filters::-webkit-scrollbar {

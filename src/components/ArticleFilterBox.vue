@@ -1,11 +1,15 @@
 <template>
-  <div class="filter-item" :style="`background-image : url(${filterImg})`"></div> 
+  <div :class="filter +' filter-item'" :style="`background-image : url(${filterImg})`">
+    <slot>
+    </slot>
+  </div> 
 </template>
 
 <script>
 export default {
     props:{
         filterImg : String,
+        filter : String,
     }
 }
 </script>
