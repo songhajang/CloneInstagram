@@ -10,10 +10,9 @@
       </ul>
       <img src="./assets/logo.png" class="logo" />
     </div>
-
-    <h4>안녕 {{$store.state.name}}</h4>
-    <button @click="$store.commit('이름변경')">이름바꾸기</button>
     
+    <h4>안녕 {{$store.state.name}}</h4>
+    <button @click="$store.commit('이름변경')">name</button>
 
     <Container :dataList="data" :step="step" :fileImg="imgs" :filterName="imgFilter" @write="comment = $event"/>
     <button @click="more" v-if="step == 0">더보기</button>
