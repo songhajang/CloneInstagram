@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin: 0 auto; max-width:500px">
     <div class="header">
       <ul class="header-button-left">
         <li @click="step=0">Cancel</li>
@@ -10,9 +10,6 @@
       </ul>
       <img src="./assets/logo.png" class="logo" />
     </div>
-    
-    <h4>안녕 {{$store.state.name}}</h4>
-    <button @click="$store.commit('이름변경')">name</button>
 
     <Container :dataList="data" :step="step" :fileImg="imgs" :filterName="imgFilter" @write="comment = $event"/>
     <button @click="more" v-if="step == 0">더보기</button>
@@ -115,6 +112,7 @@ ul {
   padding-bottom: 8px;
   position: sticky;
   top: 0;
+  z-index: 99;
 }
 
 .header-button-left {
