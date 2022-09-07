@@ -13,7 +13,7 @@
 
     <Container :dataList="data" :step="step" :fileImg="imgs" :filterName="imgFilter" @write="comment = $event" />
     <!-- <button @click="more" v-if="step == 0">더보기</button> -->
-    <p>{{$store.state.more}}</p>
+    <p>{{more}}</p>
     <button @click="$store.dispatch('getData')">더 보기데스요</button>
 
     <div class="footer">
@@ -30,6 +30,7 @@
 import Container from './components/SectionContainer.vue';
 import datas from './CloneData.js'
 import axios from 'axios'
+import { mapState, mapMutations } from 'vuex'
 axios.post()
 
 export default {
@@ -47,19 +48,16 @@ export default {
       imgFilter: '',
     }
   },
+  computed: {
+    ...mapState(['more']),
+    ...mapMutations(['setMore'])
+  },
   mounted() {
     this.emitter.on('filterName', (e) => {
       this.imgFilter = e
     });
   },
   methods: {
-    more() {
-      axios.get(`https://codingapple1.github.io/vue/more${this.val}.json`)
-        .then(res => {
-          this.data.push(res.data)
-          this.val = 1
-        })
-    },
     upload(e) {
       let file = e.target.files
       this.step++
