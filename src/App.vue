@@ -11,8 +11,10 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :dataList="data" :step="step" :fileImg="imgs" :filterName="imgFilter" @write="comment = $event"/>
-    <button @click="more" v-if="step == 0">더보기</button>
+    <Container :dataList="data" :step="step" :fileImg="imgs" :filterName="imgFilter" @write="comment = $event" />
+    <!-- <button @click="more" v-if="step == 0">더보기</button> -->
+    <p>{{$store.state.more}}</p>
+    <button @click="$store.dispatch('getData')">더 보기데스요</button>
 
     <div class="footer">
       <ul class="footer-button-plus">
@@ -20,7 +22,7 @@
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
- 
+
   </div>
 </template>
 
@@ -35,38 +37,38 @@ export default {
   components: {
     Container,
   },
-  data(){
-    return{
-      step : 0,
-      data : datas,
-      val : 0,
-      imgs : '',
-      comment : '',
-      imgFilter : '',
+  data() {
+    return {
+      step: 0,
+      data: datas,
+      val: 0,
+      imgs: '',
+      comment: '',
+      imgFilter: '',
     }
   },
-  mounted(){
-    this.emitter.on('filterName', (e)=>{
+  mounted() {
+    this.emitter.on('filterName', (e) => {
       this.imgFilter = e
     });
   },
-  methods:{
-    more(){
+  methods: {
+    more() {
       axios.get(`https://codingapple1.github.io/vue/more${this.val}.json`)
-      .then( res =>{
-        this.data.push(res.data)
-        this.val  = 1
-      })
+        .then(res => {
+          this.data.push(res.data)
+          this.val = 1
+        })
     },
-    upload(e){
+    upload(e) {
       let file = e.target.files
-      this.step ++
+      this.step++
       let url = URL.createObjectURL(file[0])
       this.imgs = url
-      console.log( this.imgs)
-      
+      console.log(this.imgs)
+
     },
-    publish(){
+    publish() {
       let bord = {
         name: "Kim Hyun",
         userImage: "https://placeimg.com/100/100/arch",
